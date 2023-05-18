@@ -1,0 +1,22 @@
+{
+  "name": "chat-socket.io",
+  "version": "1.0.0",
+  "description": "Socket.io chat App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "socket",
+    "socket.io",
+    "node",
+    "nodejs"
+  ],
+  "author": "Adama NIADA",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1"
+  }
+}

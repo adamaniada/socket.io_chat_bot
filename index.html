@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo socket.io chat bot</title>
+</head>
+<body>
+    <div id="messages" class="messages"></div>
+    <form action="">
+        <input type="text" id="name" placeholder="Entrez votre nom">
+        <input type="text" id="message" placeholder="Entrez votre message">
+        <button>Envoyer</button>
+    </form>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        // on se connecte  au serveur socket
+        const socket = io();
+        window.onload = () => {
+            document.querySelector("form").addEventListener("submit", (e) => {
+                // on empeche l'envoi du formulaire
+                e.preventDefault();
+                const name = document.querySelector("#name")
+                const message = document.querySelector("#message")
+
+                socket.emit("chat_message", {name : name.value, message : message.value});
+
+                document.querySelector("#name").value = "";
+                document.querySelector("#message").value = "";
+            })
+
+            socket.on("receive_message", (msg) => {
+                document.querySelector("#messages").innerHTML += `<p>${msg.name} : ${msg.message}</p>`;
+            });
+        }
+    </script>
+
+</body>
+</html>
